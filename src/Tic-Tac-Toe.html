@@ -4,6 +4,7 @@
 table, td {
   border: 1px solid black;
   height: 40px;
+  width: 40px;
 }
 </style>
 
@@ -16,29 +17,39 @@ table, td {
 
   <!--CSS einbinden-->
   <link rel="stylesheet" type="text/css" href="Tic-Tac-Toe.css">
+
+  <!--Funktion addX-->
+  <script type="text/javascript">
+  function insertX () {
+  var td1 = document.getElementById("1)");
+    if (td1.onclick = true) {
+      alert ("true")
+    }
+  }
+  </script>
 </head>
 
-<body>
   <!--JS einbinden-->
   <script type="text/javascript" src="Tic-Tac-Toe.js"></script>
   
   <!--Tabelle-->
+  
   <table style="width:50%">
     <caption>Spieler X ist dran!</caption>
     <tr> <!--Oben-->
       <td id="1"></td>
-      <td></td>
-      <td></td>
+      <td id="2"></td>
+      <td id="3"></td>
     </tr>
     <tr> <!--Mitte-->
-      <td></td>
-      <td></td>
-      <td></td>
+      <td id="4"></td>
+      <td id="5"></td>
+      <td id="6"></td>
     </tr>
     <tr> <!--Unten-->
-      <td></td>
-      <td></td> 
-      <td></td>
+      <td id="7"></td>
+      <td id="8"></td> 
+      <td id="9"></td>
     </tr>
   </table>  
 </body>   
