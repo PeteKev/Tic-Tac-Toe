@@ -1,54 +1,31 @@
-/*https://wiki.selfhtml.org/wiki/JavaScript/Tutorials/Spiele/Tic-Tac-Toe*/ 
-
-
-body {
+body {  
     text-align: center; /*Ausrichtung*/
     font-family: Arial, Helvetica, sans-serif; 
 }
 
-.tic-tac-toe table { /*Tic-Tac-Toe = Klasse*/
-    border: 2px solid black;
-    border-collapse: separate;
+h2 {
+    margin: 0 auto; /*Überschrift*/ 
+    font-size: 35px;
+    margin: 10px;
 }
 
-.tic-tac-toe td {
-    font-style:italic;
-    text-align: right;
-    box-shadow: inset 1px 3px 5px -3px rgba(0,0,0,0.5);    
+/*Grundgerüst der Tabelle*/
+.game-board { 
+    display: grid;
+    grid-template-rows: 100px 100px 100px; /*Größe der Reihen*/
+    grid-template-columns: 100px 100px 100px; /*Größe der Zellen*/
 }
 
-.tic-tac-toe button { /*Leeres Tabellenfeld*/
-    left: -100vw;
-    position: absolute;
+body {
+  display: flex;
+  justify-content: center;
 }
 
-.tic-tac-toe .o { /*Farbliche Darstellung Klasse O*/
-    background: #8f8;
-    color: #8f8;
+/*Formatierung der Tabelle*/
+.box {
+  border: 1px solid #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #AAA;
 }
-  
-.tic-tac-toe .x { /*Farbliche Darstellung Klasse X*/
-    background: #f88;
-    color: #f88;
-}
-
-.tic-tac-toe .o::after { /*Kreis darstellen*/
-    content: "○";
-    top: -0.2em; /*Vertikale Position*/
-}
-  
-.tic-tac-toe .x::after { /*Kreuz darstellen*/
-    content: "×";
-    top: -0.125em; /*Vertikale Position*/
-}
-  
-.tic-tac-toe .o::after,
-.tic-tac-toe .x::after {
-    color: black;
-    display: block;
-    font-size: 5em;
-    position: absolute;
-    width: 100%;
-  }
-  
-  
