@@ -1,4 +1,3 @@
-<!doctype html>
 <html lang="de">
 
 <head>
@@ -6,27 +5,30 @@
   <title>Tic-Tac-Toe by PeteKev</title>
 
   <!--CSS einbinden-->
-  <link rel="stylesheet" type="text/css" href="Tic-Tac-Toe.css">
- 
-  <!--JS einbinden-->
-  <script type="text/javascript" src="Tic-Tac-Toe.js"></script>
+  <link rel="stylesheet" href="Tic-Tac-Toe.css">
 </head>   
 
 <body>
-  <!--Klassen aufrufen-->
-  <div class="flex-container flex-column"></div>
-  <div class="flex-container flex-wrap" id="board"></div>
-
   <!--Tabelle-->
-  <div class="game-board">
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-  </div>
+<table>
+    <tr name="0">
+    <td name="0"></td> <td name="1"></td> <td name="2"></td>
+   </tr>
+    <tr name="1">
+    <td name="0"></td> <td name="1"></td> <td name="2"></td>
+   </tr>
+    <tr name="2">
+    <td name="0"></td> <td name="1"></td> <td name="2"></td>
+   </tr>
+</table>
+
+  <!--Spieler--> 
+	<button class="player" name="X"> Spieler X </button>
+	<button class="player" name="O"> Spieler O </button>
+
+  <!--Nächster Zug--> 
+  <h4> Naechster Zug: <span name="whoseturn"> </span> </h4>
+
+  <!--JS einbinden-->
+  <script src="Tic-Tac-Toe.js"></script>
 </body>
