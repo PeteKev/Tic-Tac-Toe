@@ -5,7 +5,7 @@ var gameOver = false;
 if(confirm("Soll X starten?") == true) {
 	var player = 'X';
 } else {
-	var playere = 'O';
+	var player = 'O';
 }
 
 // Array für jedes Zelle der Tabelle
@@ -32,8 +32,22 @@ var winCombinations = [
 	[2, 4, 6]
 ];
 
-// Funktion reset
+// Funktion reset ohne Parameter
+function reset() {
 
+	// Schleife die mit Index 1 anstatt 0 startet
+	// Dadurch werden alle 9 Squares angesprochen
+	for (var i =1; i < squares.length +1; i++) {
+		
+		// HTML-Element mit der gleichen ID wie oben updaten
+		var htmlbutton = "sqr" +i;
+	}
+	// Variable zum leeren Array zurücksetzen
+	squares = [];
+
+	// Variable zurücksetzen und auf true oder false setzen
+	gameOver = false;
+}
 
 // Funktion squareClick, Parameter square
 function squareClick(square) {
@@ -68,3 +82,4 @@ function squareClick(square) {
 		player = 'O';
 	}
 }
+
