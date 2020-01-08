@@ -1,34 +1,15 @@
-h2 {
-    margin: 0 auto; /*Überschrift*/ 
-    font-size: 35px;
+h1 { /*Überschrift*/ 
+    margin: 0 auto; 
+    font-size: 25px;
     margin: 10px;
 }
- 
-td { /*Tabelle*/ 
-    border: 1px solid black; 
-    width: 100px;
-    height: 100px;
-    text-align: center;
-    font-size: x-large;
-}
 
-.player {
-	margin-top: 10px;
-	margin-right: 30px;
-}
 
-.player[name="X"] { /*Button Spieler X*/ 
-	background-color: lightblue;
-}
-
-.player[name="O"] { /*Button Spieler O*/ 
-	background-color: lightgreen;
-}
-
-.highlight {	
-	border: 5px solid yellow;
-}
-
-.unhighlight {
-	border: 1px none black;
+.tictac /*Tabelle*/ 
+{
+  background:rgb(255, 255, 255);
+  border:#999 5px groove;
+  width:100px;
+  height:100px;
+  font-size:150px;
 } 

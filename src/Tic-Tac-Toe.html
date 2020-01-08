@@ -4,30 +4,32 @@
   <!--Titel-->
   <title>Tic-Tac-Toe by PeteKev</title>
 
+  <!--Überschrift-->
+  <h1>Tic-Tac-Toe by PeteKev</h1>
+
   <!--CSS einbinden-->
   <link rel="stylesheet" href="Tic-Tac-Toe.css">
 </head>   
 
 <body>
-  <!--Tabelle-->
+<!--Tabelle-->
 <table>
-    <tr name="0">
-    <td name="0"></td> <td name="1"></td> <td name="2"></td>
-   </tr>
-    <tr name="1">
-    <td name="0"></td> <td name="1"></td> <td name="2"></td>
-   </tr>
-    <tr name="2">
-    <td name="0"></td> <td name="1"></td> <td name="2"></td>
-   </tr>
+    <tr> <!--Button als Typ; Klasse tictac zur Formatierung, onClick Funktion squareClick für sqr ausführen-->
+      <td><input type="button" id="sqr1" name="sqr1" class="tictac" onClick="squareClick('sqr1')" /></td>
+      <td><input type="button" id="sqr2" name="sqr2" class="tictac" onClick="squareClick('sqr2')" /></td>
+      <td><input type="button" id="sqr3" name="sqr3" class="tictac" onClick="squareClick('sqr3')" /></td>
+  </tr>
+    <tr>
+      <td><input type="button" id="sqr4" name="sqr4" class="tictac" onClick="squareClick('sqr4')" /></td>
+      <td><input type="button" id="sqr5" name="sqr5" class="tictac" onClick="squareClick('sqr5')" /></td>
+      <td><input type="button" id="sqr6" name="sqr6" class="tictac" onClick="squareClick('sqr6')" /></td>
+  </tr>
+    <tr>
+      <td><input type="button" id="sqr7" name="sqr7" class="tictac" onClick="squareClick('sqr7')" /></td>
+      <td><input type="button" id="sqr8" name="sqr8" class="tictac" onClick="squareClick('sqr8')" /></td>
+      <td><input type="button" id="sqr9" name="sqr9" class="tictac" onClick="squareClick('sqr9')" /></td>
+  </tr>
 </table>
-
-  <!--Spieler--> 
-	<button class="player" name="X"> Spieler X </button>
-	<button class="player" name="O"> Spieler O </button>
-
-  <!--Nächster Zug--> 
-  <h4> Naechster Zug: <span name="whoseturn"> </span> </h4>
 
   <!--JS einbinden-->
   <script src="Tic-Tac-Toe.js"></script>

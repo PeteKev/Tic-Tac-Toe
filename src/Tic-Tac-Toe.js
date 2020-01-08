@@ -28,8 +28,7 @@ $('td').click( /*Klick auf Tabelle*/
 			$('.player[name="X"]').removeClass('unhighlight');
 			$('.player[name="X"]').addClass('highlight');
 
-			currentPlayerName = 'X';
-				
+			currentPlayerName = 'X';		
 		}
 	}
 );
