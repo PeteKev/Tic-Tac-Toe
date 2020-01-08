@@ -32,8 +32,11 @@ var winCombinations = [
 	[2, 4, 6]
 ];
 
+// Funktion reset
+
+
 // Funktion squareClick, Parameter square
-function squareClick(Square) {
+function squareClick(square) {
 	
 	// Variable, welche die ID des Square enthält
 	var idElement = document.getElementById(square).value;
@@ -48,15 +51,20 @@ function squareClick(Square) {
 		// Inhalt der Variable player angleichen
 		document.getElementById(square).value = player;
 
-		//
+		// Inhalt 
 		squares[parseSquare] = player;
 	}
 
-	// Funktion checkForWinner X
+	// Funktion checkForWinner X aufrufen, X als Argument übergeben
+	checkForWinner('X');
 
-
-	// Funktion CheckForWinner O
-
+	// Funktion CheckForWinner O aufrufen, O als Argument übergeben
+	checkForWinner('O');
 
 	// Spieler tauschen
+	if(player == 'O') {
+		player = 'X';
+	} else {
+		player = 'O';
+	}
 }
