@@ -1,4 +1,5 @@
-caption { /*Tabellenüberschrift*/ 
+caption /*Tabellenüberschrift*/  
+{ 
     margin: 0 auto; 
     font-size: 25px;
     margin: 10px;
@@ -13,3 +14,7 @@ caption { /*Tabellenüberschrift*/
   height:180px;
   font-size:150px;
 } 
+
+.highlight { /*Hintergrundfarbe bei Gewinn*/ 
+  background-color: green;
+}

@@ -37,7 +37,7 @@ function reset() {
 
 	// Schleife die mit Index 1 anstatt 0 startet
 	// Dadurch werden alle 9 Squares angesprochen
-	for (var i =1; i < squares.length + 1; i++) {
+	for (var i = 1; i < squares.length + 1; i++) {
 		
 		// HTML-Element mit der gleichen ID wie oben updaten
 		var htmlbutton = "sqr" +i;
@@ -92,7 +92,7 @@ function playAgain() {
 	// Geb je nach Inhalt der Variable response Text aus
 	if (response == true) {
 		alert("Wir spielen nochmal!")
-		reset
+		reset ();
 	} else {
 		alert("Danke fürs Spielen!")
 	}
@@ -107,7 +107,7 @@ function checkForWinner(value) {
 		// Prüfen, ob diese den Value Parameter entsprechen
 		if(squares[winCombinations[i][0]] == value && squares[winCombinations[i][1]] == value && squares[winCombinations[i][2]] == value) {
 			// Gewinner anzeigen
-			alert(value + "hat gewonnen!");
+			alert(value + " hat gewonnen!");
 			// Variable gameOver auf true setzen
 			gameOver == true;
 		}
@@ -119,6 +119,11 @@ function checkForWinner(value) {
 		} else {
 			return("Der nächste Spieler ist dran!");
 		}
+		// Zellen highlighten 
+		Highlight
 	}
 
-// Reset Button 
+// Funktion Highlight
+function Highlight() {
+
+} 	
