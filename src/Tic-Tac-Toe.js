@@ -37,7 +37,7 @@ function reset() {
 
 	// Schleife die mit Index 1 anstatt 0 startet
 	// Dadurch werden alle 9 Squares angesprochen
-	for (var i =1; i < squares.length +1; i++) {
+	for (var i =1; i < squares.length + 1; i++) {
 		
 		// HTML-Element mit der gleichen ID wie oben updaten
 		var htmlbutton = "sqr" +i;
@@ -72,7 +72,7 @@ function squareClick(square) {
 	// Funktion checkForWinner X aufrufen, X als Argument übergeben
 	checkForWinner('X');
 
-	// Funktion CheckForWinner O aufrufen, O als Argument übergeben
+	// Funktion checkForWinner O aufrufen, O als Argument übergeben
 	checkForWinner('O');
 
 	// Spieler tauschen
@@ -99,3 +99,26 @@ function playAgain() {
 }
 
 // Funktion checkForWinner
+function checkForWinner(value) {
+	// Bei Index 0 starten, so lange wie der Index kleiner als die Länge des Arrays winCombinations
+	for(var i = 0; i < winCombinations.length; i++) {
+		// If-Statement, welches bewertet, ob der Index des Arrays winCombinations den Array squares entspricht
+		// Der erste Index ist die Loop-Variable, der zweite Index entspricht 0,1 oder 2
+		// Prüfen, ob diese den Value Parameter entsprechen
+		if(squares[winCombinations[i][0]] == value && squares[winCombinations[i][1]] == value && squares[winCombinations[i][2]] == value) {
+			// Gewinner anzeigen
+			alert(value + "hat gewonnen!");
+			// Variable gameOver auf true setzen
+			gameOver == true;
+		}
+	}	
+		// Prüfen, ob gameOver true ist
+		if(gameOver == true) {
+			// Funktion playAgain aufrufen
+			playAgain();
+		} else {
+			return("Der nächste Spieler ist dran!");
+		}
+	}
+
+// Reset Button 

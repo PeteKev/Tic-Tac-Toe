@@ -4,9 +4,6 @@
   <!--Titel-->
   <title>Tic-Tac-Toe by PeteKev</title>
 
-  <!--Überschrift-->
-  <h1>Tic-Tac-Toe by PeteKev</h1>
-
   <!--CSS einbinden-->
   <link rel="stylesheet" href="Tic-Tac-Toe.css">
 </head>   
@@ -14,6 +11,8 @@
 <body>
 <!--Tabelle-->
 <table>
+    <!--Tabellenüberschrift-->
+    <caption>Tic-Tac-Toe by PeteKev</caption>
     <tr> <!--Button als Typ; Klasse tictac zur Formatierung, onClick Funktion squareClick für sqr ausführen-->
       <td><input type="button" id="sqr1" name="sqr1" class="tictac" onClick="squareClick('sqr1')" /></td>
       <td><input type="button" id="sqr2" name="sqr2" class="tictac" onClick="squareClick('sqr2')" /></td>
@@ -33,4 +32,6 @@
 
   <!--JS einbinden-->
   <script src="Tic-Tac-Toe.js"></script>
+
+  <!--Gewinner anzeigen (caption)-->
 </body>
