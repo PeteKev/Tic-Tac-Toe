@@ -83,3 +83,19 @@ function squareClick(square) {
 	}
 }
 
+// Funktion playAgain
+function playAgain() {
+
+	// Variable die die Antwort der Dialogbox speichert
+	var response = confirm("Nochmal spielen?");
+
+	// Geb je nach Inhalt der Variable response Text aus
+	if (response == true) {
+		alert("Wir spielen nochmal!")
+		reset
+	} else {
+		alert("Danke fürs Spielen!")
+	}
+}
+
+// Funktion checkForWinner
