@@ -1,12 +1,15 @@
 //Variable wenn das Spiel vorbei ist, zu false initialisieren 
 var gameOver = false;
+var gameFinished = false;
 
+/*
 // Abfrage, welcher Spieler beginnnen soll (if)
 if(confirm("Soll X starten?") == true) {
 	var player = 'X';
 } else {
 	var player = 'O';
 }
+*/
 
 // Array für jedes Zelle der Tabelle
 var squares = new Array();
@@ -32,6 +35,16 @@ var winCombinations = [
 	[2, 4, 6]
 ];
 
+// Funktion Button Player X
+function PlayerX() {
+	document.getElementById("PlayerX").innerHTML = "Spieler X beginnt!";
+}
+
+// Funktion Button Player O
+function PlayerO() {
+	document.getElementById("PlayerO").innerHTML = "Spieler O beginnt!";
+}
+
 // Funktion reset ohne Parameter
 function reset() {
 
@@ -50,17 +63,17 @@ function reset() {
 }
 
 // Funktion squareClick, Parameter square
-function squareClick(square) {
-	
+function squareClick(square) {		// Beenden bei true
+
 	// Variable, welche die ID des Square enthält
 	var idElement = document.getElementById(square).value;
-	
+
 	// Variable, ParseInt als Argument übergeben und 1 vom Ergebnis des Aufrufs subtrahieren
 	// Gibt den Index des Arrays von Square aus, auf den der User klickt
 	var parseSquare = ((parseInt(square.substring(3, 4))) -1);
 
 	// Wenn die Variable idElement leer ist 
-	if(idElement == "") {
+	if(idElement == "" ) {
 		// Mithilfe der ID des Parameters square das HTML-Element updaten
 		// Inhalt der Variable player angleichen
 		document.getElementById(square).value = player;
@@ -106,11 +119,12 @@ function checkForWinner(value) {
 		// Der erste Index ist die Loop-Variable, der zweite Index entspricht 0,1 oder 2
 		// Prüfen, ob diese den Value Parameter entsprechen
 		if(squares[winCombinations[i][0]] == value && squares[winCombinations[i][1]] == value && squares[winCombinations[i][2]] == value) {
-			// Gewinner anzeigen
-			alert(value + " hat gewonnen!");
+		// Gewinner anzeigen
+		alert(value + " hat gewonnen!");
 			// Variable gameOver auf true setzen
 			gameOver == true;
 		}
+
 	}	
 		// Prüfen, ob gameOver true ist
 		if(gameOver == true) {
@@ -120,10 +134,13 @@ function checkForWinner(value) {
 			return("Der nächste Spieler ist dran!");
 		}
 		// Zellen highlighten 
-		Highlight
 	}
 
-// Funktion Highlight
-function Highlight() {
-
-} 	
+// Funktion Highlight 
+/*
+var Highlight = document.getElementsByClassName("tictac").getElementsByTagName("td");
+for(var i =0; i < Highlight.length; i++) {
+	if(cells[i].innerHTML == "X") {
+		cells[i].style.backgroundColor = "red";
+	}
+} */

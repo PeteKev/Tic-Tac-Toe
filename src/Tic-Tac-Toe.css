@@ -15,6 +15,12 @@ caption /*Tabellenüberschrift*/
   font-size:150px;
 } 
 
-.highlight { /*Hintergrundfarbe bei Gewinn*/ 
-  background-color: green;
+.tictac .o { /*Farbliche Darstellung Klasse O*/
+  background: #8f8;
+  color: #8f8;
+}
+
+.tictac .x { /*Farbliche Darstellung Klasse X*/
+  background: #f88;
+  color: #f88;
 }
