@@ -1,26 +1,28 @@
-caption /*Tabellenüberschrift*/  
-{ 
-    margin: 0 auto; 
-    font-size: 25px;
-    margin: 10px;
+/*Schriftart*/
+body {
+  font-family: "Arial", sans-serif;
 }
 
-
-.tictac /*Tabelle*/ 
-{
-  background:rgb(255, 255, 255);
-  border:#999 5px groove;
-  width:180px;
-  height:180px;
-  font-size:150px;
-} 
-
-.tictac .o { /*Farbliche Darstellung Klasse O*/
-  background: #8f8;
-  color: #8f8;
+/*Ausrichtung*/
+section {
+  text-align: center;
 }
 
-.tictac .x { /*Farbliche Darstellung Klasse X*/
-  background: #f88;
-  color: #f88;
+/*Spielfeld*/
+.game--container {
+  display: grid; 
+  grid-template-columns: repeat(3, auto); /*3x3 Feld*/
+  width: 306px; /*Breite*/
+  margin: 0px auto; /*Mittige Positionierung*/
+}
+
+/*Zellen des Spielfelds*/
+.cell {
+  width: 100px; /*Feste Breite der einzelnen Zellen*/
+  height: 100px; /*Feste Höhe der einzelnen Zellen*/
+  box-shadow: 0 0 0 1px #333333; 
+  border: 1px solid #333333; /*Rahmenlinien außen*/
+  cursor: pointer; 
+  line-height: 100px; /*Positionierung X & O*/
+  font-size: 60px; /*Größe X & O*/
 }

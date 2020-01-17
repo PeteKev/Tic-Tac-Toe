@@ -1,49 +1,33 @@
 <html lang="de">
-
 <head>
+  <!--Zeichenkodierung-->
+  <meta charset="UTF-8"> 
   <!--Titel-->
   <title>Tic-Tac-Toe by PeteKev</title>
-
   <!--CSS einbinden-->
   <link rel="stylesheet" href="Tic-Tac-Toe.css">
 </head>   
-
 <body>
-<!--Tabelle-->
-<table>
-    <!--Tabellenüberschrift-->
-    <caption>Tic-Tac-Toe by PeteKev</caption>
-    <tr> <!--Button als Typ; Klasse tictac zur Formatierung, onClick Funktion squareClick für sqr ausführen-->
-      <td><input type="button" id="sqr1" name="sqr1" class="tictac" onClick="squareClick('sqr1')" /></td>
-      <td><input type="button" id="sqr2" name="sqr2" class="tictac" onClick="squareClick('sqr2')" /></td>
-      <td><input type="button" id="sqr3" name="sqr3" class="tictac" onClick="squareClick('sqr3')" /></td>
-  </tr>
-    <tr>
-      <td><input type="button" id="sqr4" name="sqr4" class="tictac" onClick="squareClick('sqr4')" /></td>
-      <td><input type="button" id="sqr5" name="sqr5" class="tictac" onClick="squareClick('sqr5')" /></td>
-      <td><input type="button" id="sqr6" name="sqr6" class="tictac" onClick="squareClick('sqr6')" /></td>
-  </tr>
-    <tr>
-      <td><input type="button" id="sqr7" name="sqr7" class="tictac" onClick="squareClick('sqr7')" /></td>
-      <td><input type="button" id="sqr8" name="sqr8" class="tictac" onClick="squareClick('sqr8')" /></td>
-      <td><input type="button" id="sqr9" name="sqr9" class="tictac" onClick="squareClick('sqr9')" /></td>
-  </tr>
-</table>
-
-  <!--JS einbinden-->
-  <script src="Tic-Tac-Toe.js"></script>
-
-    <!--Spieler X Button-->
-    <button onclick="PlayerX()">Spieler X</button> 
-    <p id="PlayerX"></p>
-
-    <!--Spieler O Button-->
-    <button onclick="PlayerO()">Spieler O</button>
-    <p id="PlayerO"></p> 
-    
-    <!--Seite refreshen-->
-    <button onClick="window.location.reload();">Zuruecksetzen</button>
-    <p id="Zuruecksetzen"></p>
- 
-  <!--Gewinner anzeigen (caption)-->
-</body>
+  <section> 
+      <!--Überschrift-->
+      <h1 class="game--title">Tic Tac Toe by PeteKev</h1>
+      <!--Klasse game--container aufrufen-->
+      <div class="game--container">
+          <!--Tabelle (wird durch div zu einen Bereich geschlossen)-->
+          <div data-cell-index="0" class="cell"></div>
+          <div data-cell-index="1" class="cell"></div>
+          <div data-cell-index="2" class="cell"></div>
+          <div data-cell-index="3" class="cell"></div>
+          <div data-cell-index="4" class="cell"></div>
+          <div data-cell-index="5" class="cell"></div>
+          <div data-cell-index="6" class="cell"></div>
+          <div data-cell-index="7" class="cell"></div>
+          <div data-cell-index="8" class="cell"></div>
+      </div>
+      <!--Anzeige welcher Spieler dran ist-->
+      <h2 class="game--status"></h2>
+      <!--Seite refreshen-->
+      <button onClick="window.location.reload();">Nochmal spielen</button>
+</section>
+<!--JS einbinden-->
+<script src="Tic-Tac-Toe.js"></script>

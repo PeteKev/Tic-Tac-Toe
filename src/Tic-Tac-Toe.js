@@ -1,30 +1,29 @@
-//Variable wenn das Spiel vorbei ist, zu false initialisieren 
-var gameOver = false;
-var gameFinished = false;
+// Konstante zum aktuellen Spielstatus
+const statusDisplay = document.querySelector('.game--status');
 
-/*
-// Abfrage, welcher Spieler beginnnen soll (if)
-if(confirm("Soll X starten?") == true) {
-	var player = 'X';
+// Variable wenn das Spiel vorbei ist, zu false initialisieren 
+let gameActive = true;
+
+// Spielstatus (Spielfeld)
+let gameState = ["", "", "", "", "", "", "", "", ""];
+
+// Spielerauswahl
+if(window.confirm("Soll X starten?") == true) {
+	var currentPlayer = 'X';
 } else {
-	var player = 'O';
+	var currentPlayer = 'O';
 }
-*/
 
-// Array für jedes Zelle der Tabelle
-var squares = new Array();
-squares[0] = 0;
-squares[1] = 1;
-squares[2] = 2;
-squares[3] = 3;
-squares[4] = 4;
-squares[5] = 5;
-squares[6] = 6;
-squares[7] = 7;
-squares[8] = 8;
+// Messages
+const winningMessage = () => `Spieler ${currentPlayer} hat gewonnen!`;
+const drawMessage = () => `Spiel endet unentschieden!`;
+const currentPlayerTurn = () => `Spieler ${currentPlayer} ist dran!`;
+
+// Statusanzeige welcher Spieler dran ist
+statusDisplay.innerHTML = currentPlayerTurn(); 
 
 // Gewinnkombinationen
-var winCombinations = [
+var winningConditions = [
 	[0, 1, 2],
 	[3, 4, 5],
 	[6, 7, 8],
@@ -35,112 +34,81 @@ var winCombinations = [
 	[2, 4, 6]
 ];
 
-// Funktion Button Player X
-function PlayerX() {
-	document.getElementById("PlayerX").innerHTML = "Spieler X beginnt!";
+// Zelle geklickt, Parameter der geklickten Zelle und Index
+function handleCellPlayed(clickedCell, clickedCellIndex) {
+    // Spielstatus entspricht den aktuellen Spieler
+    gameState[clickedCellIndex] = currentPlayer;
+    // Zeichen je nach Spieler setzen
+    clickedCell.innerHTML = currentPlayer;
 }
 
-// Funktion Button Player O
-function PlayerO() {
-	document.getElementById("PlayerO").innerHTML = "Spieler O beginnt!";
+// Spieler tauschen
+function handlePlayerChange() {
+    // Wenn currentPlayer ist X, wechsel zu O, sonst bleib bei X
+    currentPlayer = currentPlayer === "X" ? "O" : "X"; 
+    // // Statusanzeige welcher Spieler dran ist
+    statusDisplay.innerHTML = currentPlayerTurn(); 
 }
 
-// Funktion reset ohne Parameter
-function reset() {
+// Funktion Highlight
+function HighlightCell() {
 
-	// Schleife die mit Index 1 anstatt 0 startet
-	// Dadurch werden alle 9 Squares angesprochen
-	for (var i = 1; i < squares.length + 1; i++) {
-		
-		// HTML-Element mit der gleichen ID wie oben updaten
-		var htmlbutton = "sqr" +i;
-	}
-	// Variable zum leeren Array zurücksetzen
-	squares = [];
-
-	// Variable zurücksetzen und auf true oder false setzen
-	gameOver = false;
 }
 
-// Funktion squareClick, Parameter square
-function squareClick(square) {		// Beenden bei true
+// Ergebnis validieren
+function handleResultValidation() {
+    let roundWon = false;
+    for (let i = 0; i <= 7; i++) {
+        const winCondition = winningConditions[i];
+        let a = gameState[winCondition[0]];
+        let b = gameState[winCondition[1]];
+        let c = gameState[winCondition[2]];
+        if (a === '' || b === '' || c === '') {
+            continue;
+        }
+        if (a === b && b === c) {
+            roundWon = true;
+            break;
+        }
+    }
 
-	// Variable, welche die ID des Square enthält
-	var idElement = document.getElementById(square).value;
+    if (roundWon) {
+        statusDisplay.innerHTML = winningMessage();
+        gameActive = false;
+        return;
+    }
 
-	// Variable, ParseInt als Argument übergeben und 1 vom Ergebnis des Aufrufs subtrahieren
-	// Gibt den Index des Arrays von Square aus, auf den der User klickt
-	var parseSquare = ((parseInt(square.substring(3, 4))) -1);
+    let roundDraw = !gameState.includes("");
+    if (roundDraw) {
+        statusDisplay.innerHTML = drawMessage();
+        gameActive = false;
+        return;
+    }
 
-	// Wenn die Variable idElement leer ist 
-	if(idElement == "" ) {
-		// Mithilfe der ID des Parameters square das HTML-Element updaten
-		// Inhalt der Variable player angleichen
-		document.getElementById(square).value = player;
-
-		// Inhalt 
-		squares[parseSquare] = player;
-	}
-
-	// Funktion checkForWinner X aufrufen, X als Argument übergeben
-	checkForWinner('X');
-
-	// Funktion checkForWinner O aufrufen, O als Argument übergeben
-	checkForWinner('O');
-
-	// Spieler tauschen
-	if(player == 'O') {
-		player = 'X';
-	} else {
-		player = 'O';
-	}
+    handlePlayerChange();
 }
 
-// Funktion playAgain
-function playAgain() {
+// Klick auf Zelle
+function handleCellClick(clickedCellEvent) {
+    const clickedCell = clickedCellEvent.target;
+    const clickedCellIndex = parseInt(clickedCell.getAttribute('data-cell-index'));
 
-	// Variable die die Antwort der Dialogbox speichert
-	var response = confirm("Nochmal spielen?");
+    if (gameState[clickedCellIndex] !== "" || !gameActive) {
+        return;
+    }
 
-	// Geb je nach Inhalt der Variable response Text aus
-	if (response == true) {
-		alert("Wir spielen nochmal!")
-		reset ();
-	} else {
-		alert("Danke fürs Spielen!")
-	}
+    handleCellPlayed(clickedCell, clickedCellIndex);
+    handleResultValidation();
 }
 
-// Funktion checkForWinner
-function checkForWinner(value) {
-	// Bei Index 0 starten, so lange wie der Index kleiner als die Länge des Arrays winCombinations
-	for(var i = 0; i < winCombinations.length; i++) {
-		// If-Statement, welches bewertet, ob der Index des Arrays winCombinations den Array squares entspricht
-		// Der erste Index ist die Loop-Variable, der zweite Index entspricht 0,1 oder 2
-		// Prüfen, ob diese den Value Parameter entsprechen
-		if(squares[winCombinations[i][0]] == value && squares[winCombinations[i][1]] == value && squares[winCombinations[i][2]] == value) {
-		// Gewinner anzeigen
-		alert(value + " hat gewonnen!");
-			// Variable gameOver auf true setzen
-			gameOver == true;
-		}
+// Neustart
+function handleRestartGame() {
+	gameActive = true;
+	currentPlayer = "X";
+	gameState = ["", "", "", "", "", "", "", "", ""];
+    statusDisplay.innerHTML = currentPlayerTurn();
+    document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
+}
 
-	}	
-		// Prüfen, ob gameOver true ist
-		if(gameOver == true) {
-			// Funktion playAgain aufrufen
-			playAgain();
-		} else {
-			return("Der nächste Spieler ist dran!");
-		}
-		// Zellen highlighten 
-	}
-
-// Funktion Highlight 
-/*
-var Highlight = document.getElementsByClassName("tictac").getElementsByTagName("td");
-for(var i =0; i < Highlight.length; i++) {
-	if(cells[i].innerHTML == "X") {
-		cells[i].style.backgroundColor = "red";
-	}
-} */
+//
+document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
