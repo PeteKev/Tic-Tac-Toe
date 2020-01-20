@@ -2,9 +2,10 @@
 const statusDisplay = document.querySelector('.game--status');
 
 // Variable wenn das Spiel vorbei ist, zu false initialisieren 
+// let
 let gameActive = true;
 
-// Spielstatus (Spielfeld)
+// Spielstatus "leer"
 let gameState = ["", "", "", "", "", "", "", "", ""];
 
 // Spielerauswahl
@@ -51,64 +52,92 @@ function handlePlayerChange() {
 }
 
 // Funktion Highlight
-function HighlightCell() {
+function changeColor() {
 
 }
 
 // Ergebnis validieren
 function handleResultValidation() {
+    // roundWon auf false setzen
     let roundWon = false;
+    // Kontrolle, ob ein Spieler gewonnen hat
     for (let i = 0; i <= 7; i++) {
+        // winConditions entspricht den jeweiligen Arrys von winningConditions
         const winCondition = winningConditions[i];
+        // Ersten Bereich des jeweiligen Arrays prüfen
         let a = gameState[winCondition[0]];
+        // Zweiten Bereich des jeweiligen Arrays prüfen
         let b = gameState[winCondition[1]];
+        // Dritten Bereich des jeweiligen Arrays prüfen
         let c = gameState[winCondition[2]];
+        // Wenn a, b & c leer sind (kein Gewinn); Weitermachen
         if (a === '' || b === '' || c === '') {
             continue;
         }
+        // Wenn a b und b c entspricht (Gewinn vorhanden)
         if (a === b && b === c) {
+            // Gewinn vorhanden
             roundWon = true;
+            // Zum Gewinn geführten Zellen farblich darstellen
+            changeColor();
+            // Spiel beenden
             break;
         }
     }
 
+    // Wenn roundWon true ist
     if (roundWon) {
+        // Gewinner anzeigen
         statusDisplay.innerHTML = winningMessage();
+        // Spiel beenden
         gameActive = false;
         return;
     }
 
+    // gameState enthält keine leeren Felder (Unentschieden)
     let roundDraw = !gameState.includes("");
+    // Wenn roundDraw true
     if (roundDraw) {
+        // Status "Unentschieden" anzeigen
         statusDisplay.innerHTML = drawMessage();
+        // Spiel beenden
         gameActive = false;
         return;
     }
 
+    // Ansonsten Spieler tauschen und Schleife erneut durchgehen
     handlePlayerChange();
 }
 
 // Klick auf Zelle
 function handleCellClick(clickedCellEvent) {
     const clickedCell = clickedCellEvent.target;
+    // Index der zuletzt angeklickten Zelle
     const clickedCellIndex = parseInt(clickedCell.getAttribute('data-cell-index'));
 
+    // Wenn der Inhalt der Zelle keine Leerzeichen enthält und das Spiel nicht aktiv ist
     if (gameState[clickedCellIndex] !== "" || !gameActive) {
+        // Beenden
         return;
     }
 
+    // Funktionen aufrufen
     handleCellPlayed(clickedCell, clickedCellIndex);
     handleResultValidation();
 }
 
-// Neustart
+// Spiel neustarten
 function handleRestartGame() {
-	gameActive = true;
-	currentPlayer = "X";
-	gameState = ["", "", "", "", "", "", "", "", ""];
+    // Spiel starten
+    gameActive = true;
+    // Spielstand zurücksetzen
+    gameState = ["", "", "", "", "", "", "", "", ""];
+    // Aktuellen Spieler anzeigen
     statusDisplay.innerHTML = currentPlayerTurn();
+    // Zellen leeren
     document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
 }
 
-//
+
+// Zellen anklickbar
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
