@@ -1,6 +1,7 @@
 /*Schriftart*/
 body {
   font-family: "Arial", sans-serif;
+  align-items: center;
 }
 
 /*Ausrichtung*/
@@ -25,4 +26,14 @@ section {
   cursor: pointer; 
   line-height: 100px; /*Positionierung X & O*/
   font-size: 60px; /*Größe X & O*/
+}
+
+/*Farbliche Darstellung X*/
+.xWin {
+  border-color: blue;
+}
+
+/*Farbliche Darstellung O*/
+.oWin {
+  border-color: green;
 }

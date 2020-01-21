@@ -53,7 +53,11 @@ function handlePlayerChange() {
 
 // Funktion Highlight
 function changeColor() {
-
+    var color = document.getElementsByClassName('game--container');
+    // if
+        if(color.value === 'X') {
+            color.claasList.add('xWin');
+        }
 }
 
 // Ergebnis validieren
@@ -138,6 +142,22 @@ function handleRestartGame() {
     document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
 }
 
-
 // Zellen anklickbar
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
+
+// Backend
+function getMatches() {
+    const Http = new XMLHttpRequest();
+    const urlGetMatches='http://localhost:5000/api/Matches/';
+    Http.open("GET", urlGetMatches);
+    Http.send();
+
+    Http.onloadend = (e) => {
+    var httpText = Http.responseText
+    console.log(httpText)    
+    var normalText = JSON.parse(httpText);    
+    console.log(normalText.length)
+    document.getElementById("jsonTest").value = normalText[0].id; // playerO, X etc.
+    }
+    // JSON lesbar
+}
