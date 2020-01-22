@@ -145,7 +145,7 @@ function handleRestartGame() {
 // Zellen anklickbar
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
 
-// Backend
+// Ausgabe der JSON
 function getMatches() {
     const Http = new XMLHttpRequest();
     const urlGetMatches='http://localhost:5000/api/Matches/';
@@ -157,7 +157,38 @@ function getMatches() {
     console.log(httpText)    
     var normalText = JSON.parse(httpText);    
     console.log(normalText.length)
-    document.getElementById("jsonTest").value = normalText[0].id; // playerO, X etc.
+    // Array-Darstellung für Spieler X
+    // Fields 
+    document.getElementById("jsonAreaXFields").value = normalText[0].fields;  
+    // isFinished
+    document.getElementById("jsonAreaXisFinished").value = normalText[0].isFinished;
+    // isWon
+    document.getElementById("jsonAreaXisWon").value = normalText[0].isWon;
+    // Winner
+    document.getElementById("jsonAreaXWinner").value = normalText[0].Winner;
+    // readyToStart
+    document.getElementById("jsonAreaXReadyToStart").value = normalText[0].ReadyToStart;
+    // Spiele ID X
+    document.getElementById("jsonAreaXID").value = normalText[0].id;
+    // Player X ID
+    document.getElementById("jsonAreaPlayerXID").value = normalText[0].playerX.id;
+    // Player X State
+    document.getElementById("jsonAreaXState").value = normalText[0].playerX.state;
+ 
+    // Array-Darstellung für Spieler O
+    // Fields
+    document.getElementById("jsonAreaOFields").value = normalText[1].fields;
+    // isFinished
+    document.getElementById("jsonAreaOisFinished").value = normalText[1].isFinished;
+    // isWon
+    document.getElementById("jsonAreaOisWon").value = normalText[1].isWon;
+    // Winner
+    document.getElementById("jsonAreaOWinner").value = normalText[1].Winner;
+    // readyToStart
+    document.getElementById("jsonAreaOReadyToStart").value = normalText[1].ReadyToStart;
+    // Spiele ID O
+    document.getElementById("jsonAreaOID").value = normalText[1].id;
+    // Player O ID
+    document.getElementById("jsonAreaPlayerOID").value = normalText[0].playerX.id;
     }
-    // JSON lesbar
 }

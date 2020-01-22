@@ -37,3 +37,8 @@ section {
 .oWin {
   border-color: green;
 }
+
+/*Ausrichtung*/
+textarea {
+  display: block;
+}

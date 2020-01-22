@@ -27,10 +27,61 @@
       <!--Anzeige welcher Spieler dran ist-->
       <h2 class="game--status"></h2>
       <!--Seite refreshen-->
+      <p style="text-align:center">
       <button onClick="window.location.reload();">Nochmal spielen</button>
-</section>
-<button onClick="getMatches();">Get Matches</button>
-<!--Als Textfeld ausgeben-->
-<input id="jsonTest"></input>
+      </p>
+  </section>
+  <!--Button zum Ausgeben der JSON-->
+  <p style="text-align:center">
+  <button onClick="getMatches();">Get Matches</button>
+  </p>
+  <!--JSON geordnet im Textfeld ausgeben für Spieler X-->
+
+
+  <!--Fields-Textarea-->
+  <label for="jsonAreaXFields">Felder Spieler X:</label>
+  <textarea cols="40" rows="1" id="jsonAreaXFields"></textarea>
+  <!--isFinished Textarea-->
+  <label for="jsonAreaXisFinished">Spieler X Finished:</label>
+  <textarea cols="40" rows="1" id="jsonAreaXisFinished"></textarea>
+  <!--isWon Textarea-->
+  <label for="jsonAreaXisFinished">Spieler X Gewonnen:</label>
+  <textarea cols="40" rows="1" id="jsonAreaXisWon"></textarea>
+  <!--Winner Textarea-->
+  <label for="jsonAreaXisFinished">Spieler X Winner:</label>
+  <textarea cols="40" rows="1" id="jsonAreaXWinner"></textarea>
+  <!--readyToStart Textarea-->
+  <label for="jsonAreaXisFinished">Spieler X ReadyToStart:</label>
+  <textarea cols="40" rows="1" id="jsonAreaXReadyToStart"></textarea>
+  <!--Game ID Textarea-->
+  <label for="jsonAreaXisFinished">Spiel X ID:</label>
+  <textarea cols="40" rows="1" id="jsonAreaXID"></textarea>
+  <!--Player X ID Textarea-->
+  <label for="jsonAreaXisFinished">Spieler X ID:</label>
+  <textarea cols="40" rows="1" id="jsonAreaPlayerXID"></textarea>
+  <!--Player X State Textarea-->
+  <label for="jsonAreaXisFinished">Spieler X Status:</label>
+  <textarea cols="40" rows="1" id="jsonAreaXState"></textarea>
+
+
+
+  <!--JSON geordnet im Textfeld ausgeben für Spieler O-->
+  <!--Fields-Textarea-->
+  <textarea cols="40" rows="1" id="jsonAreaOFields"></textarea>
+  <!--isFinished Textarea-->
+  <textarea cols="40" rows="1" id="jsonAreaOisFinished"></textarea>
+  <!--isWon Textarea-->
+  <textarea cols="40" rows="1" id="jsonAreaOisWon"></textarea>
+  <!--Winner Textarea-->
+  <textarea cols="40" rows="1" id="jsonAreaOWinner"></textarea>
+  <!--readyToStart Textarea-->
+  <textarea cols="40" rows="1" id="jsonAreaOReadyToStart"></textarea>
+  <!--Game ID Textarea-->
+  <textarea cols="40" rows="1" id="jsonAreaOID"></textarea>
+  <!--Player O ID Textarea-->
+  <textarea cols="40" rows="1" id="jsonAreaPlayerOID"></textarea>
+
+</body>
 <!--JS einbinden-->
 <script src="Tic-Tac-Toe.js"></script>
+</html>
