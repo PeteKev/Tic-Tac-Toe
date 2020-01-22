@@ -188,7 +188,5 @@ function getMatches() {
     document.getElementById("jsonAreaOReadyToStart").value = normalText[1].ReadyToStart;
     // Spiele ID O
     document.getElementById("jsonAreaOID").value = normalText[1].id;
-    // Player O ID
-    document.getElementById("jsonAreaPlayerOID").value = normalText[0].playerX.id;
     }
 }
