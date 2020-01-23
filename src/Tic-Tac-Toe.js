@@ -1,9 +1,16 @@
+// Next-Steps: Spielfelder wieder einblenden
+// Variablen der Json global deklarieren
+// Auskommentieren
+
 // Konstante zum aktuellen Spielstatus
 const statusDisplay = document.querySelector('.game--status');
 
 // Variable wenn das Spiel vorbei ist, zu false initialisieren 
 // let
 let gameActive = true;
+
+var match;
+var gameField;
 
 // Spielstatus "leer"
 let gameState = ["", "", "", "", "", "", "", "", ""];
@@ -34,6 +41,72 @@ var winningConditions = [
 	[0, 4, 8],
 	[2, 4, 6]
 ];
+
+
+
+
+// HTML-Tabelle mithilfe einer Funktion erstellen
+
+function tableCreate(matchObject, i) {
+    //var matches = ["A", "B", "C", "D", "E", "F", "G", "H", "I" ];
+        match = {
+            name: "Spiel" + i,
+            id: matchObject.id,
+        };
+        var table = document.getElementById("matchesTable");
+        console.log("Matches" + matchObject)
+        var row = table.insertRow(i);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+
+        cell1.innerHTML = match.name,
+            cell2.innerHTML = match.id;
+}
+
+
+
+function getMatches() {    
+    var matchesTable = document.getElementById("matchesTable");
+    var numbersOfRows = document.getElementById("matchesTable").rows.length;
+    for (let i = numbersOfRows-1; i >= 0; i--) {
+        console.log(i)
+        matchesTable.deleteRow(i)
+    }
+
+    const Http = new XMLHttpRequest();
+    const url = 'http://localhost:5000/api/matches';
+
+    Http.open("GET", url);
+    Http.send();
+
+    Http.onloadend = (e) => {
+        matches = JSON.parse(Http.responseText);
+
+        for (let i = 0; i < matches.length; i++) {
+            console.log("length " + matches.length);
+            tableCreate(matches[i], i );
+        }
+    }
+}
+// id
+
+function joinMatch() {
+    const Http = new XMLHttpRequest();
+    const url = 'http://localhost:5000/api/matches/' + matches[0] + '/player';
+
+    Http.open("POST", url);
+    Http.send();
+
+    Http.onreadystatechange = (e) => {
+        console.log(Http.responseText)
+    }
+}
+
+
+
+
+
+
 
 // Zelle geklickt, Parameter der geklickten Zelle und Index
 function handleCellPlayed(clickedCell, clickedCellIndex) {
@@ -146,20 +219,20 @@ function handleRestartGame() {
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
 
 // Ausgabe der JSON
-function getMatches() {
-    const Http = new XMLHttpRequest();
-    const urlGetMatches='http://localhost:5000/api/Matches/';
-    Http.open("GET", urlGetMatches);
-    Http.send();
+function getJSON() {
+    const json = new XMLHttpRequest();
+    const urlGetJSON='http://localhost:5000/api/Matches/';
+    json.open("GET", urlGetJSON);
+    json.send();
 
-    Http.onloadend = (e) => {
-    var httpText = Http.responseText
-    console.log(httpText)    
-    var normalText = JSON.parse(httpText);    
+    json.onloadend = (e) => {
+    var jsonText = json.responseText
+    console.log(jsonText)    
+    var normalText = JSON.parse(jsonText);    
     //console.log(normalText.length)
     // Array-Darstellung für Spieler X
     // Fields 
-    document.getElementById("jsonAreaXFields").value = normalText[0].fields;  
+    var gameField = normalText[0].fields;  
     // isFinished
     document.getElementById("jsonAreaXisFinished").value = normalText[0].isFinished;
     // isWon
@@ -191,5 +264,3 @@ function getMatches() {
     }
 }
 
-
-// Textfelder erst bei Klick einblenden
