@@ -156,7 +156,7 @@ function getMatches() {
     var httpText = Http.responseText
     console.log(httpText)    
     var normalText = JSON.parse(httpText);    
-    console.log(normalText.length)
+    //console.log(normalText.length)
     // Array-Darstellung für Spieler X
     // Fields 
     document.getElementById("jsonAreaXFields").value = normalText[0].fields;  
@@ -190,3 +190,6 @@ function getMatches() {
     document.getElementById("jsonAreaOID").value = normalText[1].id;
     }
 }
+
+
+// Textfelder erst bei Klick einblenden
