@@ -10,12 +10,12 @@ section {
 }
 
 /*Spielfeld*/
-/*.game--container {
+.game--container {
   display: grid; 
   grid-template-columns: repeat(3, auto); /*3x3 Feld*/
-  /*width: 306px; /*Breite*/
-  /*margin: 0px auto; /*Mittige Positionierung*/
-/*}
+  width: 306px; /*Breite*/
+  margin: 0px auto; /*Mittige Positionierung*/
+}
 
 /*Zellen des Spielfelds*/
 .cell {
@@ -38,40 +38,21 @@ section {
   border-color: green;
 }
 
-/*Ausrichtung*/
+/*Ausrichtung Textarea
 textarea {
   display: block;
   padding-bottom: 15px;
   padding-top: 15px;
-}
-
-label {
-  display: block;
-  padding-bottom: 0px;
-  padding-top: 0px;
-}
+} */
 
 
+.tic-tac-toe table { /*Tic-Tac-Toe = Klasse*/
+  border: 2px solid black;
+  border-collapse: separate;
+}
 
-table.gridtable {
-	font-family: verdana,arial,sans-serif;
-	font-size:11px;
-	color:#333333;
-	border-width: 1px;
-	border-color: #666666;
-	border-collapse: collapse;
-}
-table.gridtable th {
-	border-width: 1px;
-	padding: 8px;
-	border-style: solid;
-	border-color: #666666;
-	background-color: #dedede;
-}
-table.gridtable td {
-	border-width: 1px;
-	padding: 8px;
-	border-style: solid;
-	border-color: #666666;
-	background-color: #ffffff;
-}
+.tic-tac-toe td {
+  font-style:italic;
+  text-align: right;
+  box-shadow: inset 1px 3px 5px -3px rgba(0,0,0,0.5); 
+

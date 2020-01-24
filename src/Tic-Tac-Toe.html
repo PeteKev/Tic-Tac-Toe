@@ -1,3 +1,7 @@
+<!--Spiele ID vom jeden Spiel / Zug ausgeben-->
+<!--Dazu dynamsiche Tabelle erzeugen bzw Textfeld dynamisch aktualisieren und duplizieren-->
+<!--Länge des Arrays heraus finden, Index des Textfelds / Zelle-->
+
 <html lang="de">
 <head>
   <!--Zeichenkodierung-->
@@ -12,16 +16,22 @@
       <!--Überschrift-->
       <h1 class="game--title">Tic Tac Toe by PeteKev</h1>
       <!--Klasse game--container aufrufen-->
-
-
+      <div class="game--container">
+          <!--Tabelle (wird durch div zu einen Bereich geschlossen)-->
+          <div id="0" data-cell-index="0" class="cell"></div>
+          <div id="1" data-cell-index="1" class="cell"></div>
+          <div id="2" data-cell-index="2" class="cell" onClick="handleCellClick()"></div>
+          <div id="3" data-cell-index="3" class="cell" onClick="handleCellClick()"></div>
+          <div id="4" data-cell-index="4" class="cell" onClick="handleCellClick()"></div>
+          <div id="5" data-cell-index="5" class="cell" onClick="handleCellClick()"></div>
+          <div id="6" data-cell-index="6" class="cell" onClick="handleCellClick()"></div>
+          <div id="7" data-cell-index="7" class="cell" onClick="handleCellClick()"></div>
+          <div id="8" data-cell-index="8" class="cell" onClick="handleCellClick()"></div>
+      </div>
+      
+<!--Tabelle durch Funktion bauen-->
 <table id="matchesTable" cellpadding="2" cellspacing="2" onclick="">
 </table>
-
-
-
-
-<button onClick="getMatches();">Get Table</button>
-
 
       <!--Anzeige welcher Spieler dran ist-->
       <h2 class="game--status"></h2>
@@ -30,64 +40,64 @@
       <button onClick="window.location.reload();">Nochmal spielen</button>
       </p>
   </section>
+  <!--Button Spieler ID´s-->
+  <button onClick="getMatches();">Get Table</button>
+
   <!--Button zum Ausgeben der JSON-->
   <p style="text-align:center">
   <button onClick="getJSON();">Get JSON</button>
   </p>
 
-  <!--JSON geordnet im Textfeld ausgeben für Spieler X-->
-  <!--Fields-Textarea-->
+
+
+
+
+
+  <!--JSON geordnet im Textfeld ausgeben für Spieler X
+  Fields-Textarea
   <label for="jsonAreaXFields">Felder Spieler X:</label>
   <textarea cols="40" rows="1" id="jsonAreaXFields"></textarea>
-  <!--isFinished Textarea-->
+  isFinished Textarea
   <label for="jsonAreaXisFinished">Spieler X Finished:</label>
   <textarea cols="40" rows="1" id="jsonAreaXisFinished"></textarea>
-  <!--isWon Textarea-->
+  isWon Textarea
   <label for="jsonAreaXisWon">Spieler X Gewonnen:</label>
   <textarea cols="40" rows="1" id="jsonAreaXisWon"></textarea>
-  <!--Winner Textarea-->
+  Winner Textarea
   <label for="jsonAreaXWinner">Gewinner:</label>
   <textarea cols="40" rows="1" id="jsonAreaXWinner"></textarea>
-  <!--readyToStart Textarea-->
+  readyToStart Textarea
   <label for="jsonAreaXReadyToStart">Spieler X ReadyToStart:</label>
   <textarea cols="40" rows="1" id="jsonAreaXReadyToStart"></textarea>
-  <!--Game ID Textarea-->
+  Game ID Textarea
   <label for="jsonAreaXID">Spiel X ID:</label>
   <textarea cols="40" rows="1" id="jsonAreaXID"></textarea>
-  <!--Player X ID Textarea-->
+  Player X ID Textarea
   <label for="jsonAreaPlayerXID">Spieler X ID:</label>
   <textarea cols="40" rows="1" id="jsonAreaPlayerXID"></textarea>
-  <!--Player X State Textarea-->
+  Player X State Textarea
   <label for="jsonAreaXState">Spieler X Status:</label>
   <textarea cols="40" rows="1" id="jsonAreaXState"></textarea>
 
-  <!--JSON geordnet im Textfeld ausgeben für Spieler O-->
-  <!--Fields-Textarea-->
+  JSON geordnet im Textfeld ausgeben für Spieler O
+  Fields-Textarea
   <label for="jsonAreaOFields">Spieler O Felder:</label>
   <textarea cols="40" rows="1" id="jsonAreaOFields"></textarea>
-  <!--isFinished Textarea-->
+  isFinished Textarea
   <label for="jsonAreaOisFinished">Spieler O Finished:</label>
   <textarea cols="40" rows="1" id="jsonAreaOisFinished"></textarea>
-  <!--isWon Textarea-->
+  isWon Textarea
   <label for="jsonAreaOisWon">Spieler O Gewonnen:</label>
   <textarea cols="40" rows="1" id="jsonAreaOisWon"></textarea>
-  <!--Winner Textarea-->
+  Winner Textarea
   <label for="jsonAreaOWinner">Gewinner:</label>
   <textarea cols="40" rows="1" id="jsonAreaOWinner"></textarea>
-  <!--readyToStart Textarea-->
+  readyToStart Textarea
   <label for="jsonAreaOReadyToStart">Spieler O ReadyToStart:</label>
   <textarea cols="40" rows="1" id="jsonAreaOReadyToStart"></textarea>
-  <!--Game ID Textarea-->
+  Game ID Textarea
   <label for="jsonAreaOID">Spieler O ID:</label>
-  <textarea cols="40" rows="1" id="jsonAreaOID"></textarea>
-
-<!--Spiele ID vom jeden Spiel / Zug ausgeben-->
-<!--Dazu dynamsiche Tabelle erzeugen bzw Textfeld dynamisch aktualisieren und duplizieren-->
-<!--Länge des Arrays heraus finden, Index des Textfelds / Zelle-->
-
-
-
-
+  <textarea cols="40" rows="1" id="jsonAreaOID"></textarea>-->
 
 </body>
 <!--JS einbinden-->

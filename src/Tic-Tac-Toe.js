@@ -6,11 +6,25 @@
 const statusDisplay = document.querySelector('.game--status');
 
 // Variable wenn das Spiel vorbei ist, zu false initialisieren 
-// let
 let gameActive = true;
 
 var match;
-var gameField;
+
+// Variablen zur JSON
+var gameField; 
+var xIsFinished; 
+var xIsWon; 
+var xWinner;
+var xReadyToStart;
+var xID;
+var PlayerXID;
+var xState;
+var oFields; 
+var oIsFinished; 
+var oIsWon; 
+var oWinner; 
+var oReadyToStart; 
+var oID;
 
 // Spielstatus "leer"
 let gameState = ["", "", "", "", "", "", "", "", ""];
@@ -30,6 +44,9 @@ const currentPlayerTurn = () => `Spieler ${currentPlayer} ist dran!`;
 // Statusanzeige welcher Spieler dran ist
 statusDisplay.innerHTML = currentPlayerTurn(); 
 
+// Zellen anklickbar
+document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
+
 // Gewinnkombinationen
 var winningConditions = [
 	[0, 1, 2],
@@ -42,55 +59,66 @@ var winningConditions = [
 	[2, 4, 6]
 ];
 
-
-
-
-// HTML-Tabelle mithilfe einer Funktion erstellen
-
+// Tabelle erstellen, Parameter matchObject & Zähler i
 function tableCreate(matchObject, i) {
-    //var matches = ["A", "B", "C", "D", "E", "F", "G", "H", "I" ];
         match = {
+            // Spielnummer ausgeben
             name: "Spiel" + i,
             id: matchObject.id,
         };
+        // Tabelle anhand der ID
         var table = document.getElementById("matchesTable");
-        console.log("Matches" + matchObject)
+        //console.log("Matches" + matchObject)
+        // Reihen anhand der Anzahl von i einfügen
         var row = table.insertRow(i);
+        // Zelle 1 erstellen
         var cell1 = row.insertCell(0);
+        // Zelle 2 erstellen
         var cell2 = row.insertCell(1);
 
+        // In Zelle 1 Spielname ausgeben
         cell1.innerHTML = match.name,
-            cell2.innerHTML = match.id;
+        // In Zelle 2 Spiel-ID ausgeben
+        cell2.innerHTML = match.id;
 }
 
-
-
-function getMatches() {    
+// Matches erkennen
+function getMatches() {  
+    // ID der Tabelle   
     var matchesTable = document.getElementById("matchesTable");
+    // Anzahl der Reihen der Tabelle
     var numbersOfRows = document.getElementById("matchesTable").rows.length;
+    // Solange die Anzahl der Reihen -1 größer als gleich 0 ist, Zellen löschen
     for (let i = numbersOfRows-1; i >= 0; i--) {
         console.log(i)
+        // Tabelle bei Klick auf Button löschen / durch aktualisierte ersetzen
         matchesTable.deleteRow(i)
     }
 
+    // HTTP Schnittstelle
     const Http = new XMLHttpRequest();
+    // Spiel-URL
     const url = 'http://localhost:5000/api/matches';
 
+    // URL öffnen
     Http.open("GET", url);
     Http.send();
 
     Http.onloadend = (e) => {
+        // Antwort als JSON
         matches = JSON.parse(Http.responseText);
 
         for (let i = 0; i < matches.length; i++) {
+            // Anzahl der Matches in Konsole ausgeben
             console.log("length " + matches.length);
+            // Tabelle anhand der Anzahl i erstellen
             tableCreate(matches[i], i );
         }
     }
 }
-// id
-
+// Match joinen
 function joinMatch() {
+    // HTTP Schnittstelle
     const Http = new XMLHttpRequest();
     const url = 'http://localhost:5000/api/matches/' + matches[0] + '/player';
 
@@ -98,15 +126,10 @@ function joinMatch() {
     Http.send();
 
     Http.onreadystatechange = (e) => {
+        // Antwort in Console ausgeben
         console.log(Http.responseText)
     }
 }
-
-
-
-
-
-
 
 // Zelle geklickt, Parameter der geklickten Zelle und Index
 function handleCellPlayed(clickedCell, clickedCellIndex) {
@@ -124,13 +147,11 @@ function handlePlayerChange() {
     statusDisplay.innerHTML = currentPlayerTurn(); 
 }
 
-// Funktion Highlight
-function changeColor() {
-    var color = document.getElementsByClassName('game--container');
-    // if
-        if(color.value === 'X') {
-            color.claasList.add('xWin');
-        }
+// Funktion Highlight tbd
+function changeColor(winningRow) {
+    for (let i = 0; i<3; i++){
+        document.getElementById(winningRow[i]).style.backgroundColor = 'red';
+    }
 }
 
 // Ergebnis validieren
@@ -156,7 +177,7 @@ function handleResultValidation() {
             // Gewinn vorhanden
             roundWon = true;
             // Zum Gewinn geführten Zellen farblich darstellen
-            changeColor();
+            changeColor(winningConditions[i]);
             // Spiel beenden
             break;
         }
@@ -191,7 +212,6 @@ function handleCellClick(clickedCellEvent) {
     const clickedCell = clickedCellEvent.target;
     // Index der zuletzt angeklickten Zelle
     const clickedCellIndex = parseInt(clickedCell.getAttribute('data-cell-index'));
-
     // Wenn der Inhalt der Zelle keine Leerzeichen enthält und das Spiel nicht aktiv ist
     if (gameState[clickedCellIndex] !== "" || !gameActive) {
         // Beenden
@@ -215,8 +235,6 @@ function handleRestartGame() {
     document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
 }
 
-// Zellen anklickbar
-document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
 
 // Ausgabe der JSON
 function getJSON() {
@@ -229,38 +247,37 @@ function getJSON() {
     var jsonText = json.responseText
     console.log(jsonText)    
     var normalText = JSON.parse(jsonText);    
-    //console.log(normalText.length)
+
     // Array-Darstellung für Spieler X
-    // Fields 
+    // Gamefield 
     var gameField = normalText[0].fields;  
     // isFinished
-    document.getElementById("jsonAreaXisFinished").value = normalText[0].isFinished;
+    var xIsFinished = normalText[0].isFinished;
     // isWon
-    document.getElementById("jsonAreaXisWon").value = normalText[0].isWon;
+    var xIsWon = normalText[0].isWon;
     // Winner
-    document.getElementById("jsonAreaXWinner").value = normalText[0].Winner;
+    var xWinner = normalText[0].Winner;
     // readyToStart
-    document.getElementById("jsonAreaXReadyToStart").value = normalText[0].ReadyToStart;
+    var xReadyToStart = normalText[0].ReadyToStart;
     // Spiele ID X
-    document.getElementById("jsonAreaXID").value = normalText[0].id;
+    var xID = normalText[0].id;
     // Player X ID
-    document.getElementById("jsonAreaPlayerXID").value = normalText[0].playerX.id;
+    var PlayerXID = normalText[0].playerX.id;
     // Player X State
-    document.getElementById("jsonAreaXState").value = normalText[0].playerX.state;
+    var xState = normalText[0].playerX.state;
  
     // Array-Darstellung für Spieler O
     // Fields
-    document.getElementById("jsonAreaOFields").value = normalText[1].fields;
+    var oFields = normalText[1].fields;
     // isFinished
-    document.getElementById("jsonAreaOisFinished").value = normalText[1].isFinished;
+    var oIsFinished = normalText[1].isFinished;
     // isWon
-    document.getElementById("jsonAreaOisWon").value = normalText[1].isWon;
+    var oIsWon = normalText[1].isWon;
     // Winner
-    document.getElementById("jsonAreaOWinner").value = normalText[1].Winner;
+    var oWinner = normalText[1].Winner;
     // readyToStart
-    document.getElementById("jsonAreaOReadyToStart").value = normalText[1].ReadyToStart;
+    var oReadyToStart = normalText[1].ReadyToStart;
     // Spiele ID O
-    document.getElementById("jsonAreaOID").value = normalText[1].id;
+    var oID = normalText[1].id;
     }
 }
-
