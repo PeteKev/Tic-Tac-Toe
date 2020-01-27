@@ -1,3 +1,5 @@
+// To do: Get clicked Cell ID (event)
+
 // Konstante zum aktuellen Spielstatus
 const statusDisplay = document.querySelector('.game--status');
 
@@ -54,6 +56,18 @@ var winningConditions = [
 	[0, 4, 8],
 	[2, 4, 6]
 ];
+
+// JSON zurücksetzen tbd
+function resetJSON() {
+    jsonText.reload;
+}
+
+// Fenster neu laden tbd
+function reloadWindow() {
+    window.location.reload(true);
+    // JSON zum Ursprungszustand zurücksetzen
+    resetJSON();
+}
 
 // Tabelle erstellen, Parameter matchObject & Zähler i
 function tableCreate(matchObject, i) {
@@ -148,13 +162,6 @@ function getClickedRow() {
     var rows = document.getElementsByClassName("cell").rows; 
     console.log(rows)
 }
-
-
-
-
-
-
-
 
 // Zelle geklickt, Parameter der geklickten Zelle und Index
 function handleCellPlayed(clickedCell, clickedCellIndex) {
@@ -286,23 +293,37 @@ function getJSON() {
     var xReadyToStart = normalText[0].ReadyToStart;
     // Spiele ID X
     var xID = normalText[0].id;
-    // Player X ID
-    var PlayerXID = normalText[0].playerX.id;
-    // Player X State
-    var xState = normalText[0].playerX.state;
+    
+    // Player X ID & State wenn vorhanden ausgeben, Variablen global deklarieren
+    var PlayerXID;
+    var xState;
+
+    if(normalText[0].playerX) {
+        var PlayerXID = normalText[0].playerX.id;
+        var xState = normalText[0].playerX.state;
+    }   
  
-    // Array-Darstellung für Spieler O
-    // Fields
-    var oFields = normalText[1].fields;
-    // isFinished
-    var oIsFinished = normalText[1].isFinished;
-    // isWon
-    var oIsWon = normalText[1].isWon;
-    // Winner
-    var oWinner = normalText[1].Winner;
-    // readyToStart
-    var oReadyToStart = normalText[1].ReadyToStart;
-    // Spiele ID O
-    var oID = normalText[1].id;
+    // Player O Array ausgeben wenn vorhanden, Variablen global deklarieren
+    var oFields;
+    var oIsFinished;
+    var oIsWon;
+    var oWinner;
+    var oReadyToStart;
+    var oID;
+
+    // Wenn das Array größer als 1 ist, Player O Daten ausgeben
+    if(normalText.length > 1) {
+        var oFields = normalText[1].fields;
+        // isFinished
+        var oIsFinished = normalText[1].isFinished;
+        // isWon
+        var oIsWon = normalText[1].isWon;
+        // Winner
+        var oWinner = normalText[1].Winner;
+        // readyToStart
+        var oReadyToStart = normalText[1].ReadyToStart;
+        // Spiele ID O
+        var oID = normalText[1].id;
+        }
     }
-}
+} 
