@@ -3,7 +3,7 @@
 <!--Länge des Arrays heraus finden, Index des Textfelds / Zelle-->
 
 <html lang="de">
-<head>
+  <head>
   <!--Zeichenkodierung-->
   <meta charset="UTF-8"> 
   <!--Titel-->
@@ -15,38 +15,47 @@
   <section> 
       <!--Überschrift-->
       <h1 class="game--title">Tic Tac Toe by PeteKev</h1>
+      <!--Tabellen ID zum Ausgeben der Spiel-ID´s festlegen-->
+      <table id="matchesTable" onclick="joinMatch()">
       <!--Klasse game--container aufrufen-->
       <div class="game--container">
           <!--Tabelle (wird durch div zu einen Bereich geschlossen)-->
           <div id="0" data-cell-index="0" class="cell"></div>
           <div id="1" data-cell-index="1" class="cell"></div>
-          <div id="2" data-cell-index="2" class="cell" onClick="handleCellClick()"></div>
-          <div id="3" data-cell-index="3" class="cell" onClick="handleCellClick()"></div>
-          <div id="4" data-cell-index="4" class="cell" onClick="handleCellClick()"></div>
-          <div id="5" data-cell-index="5" class="cell" onClick="handleCellClick()"></div>
-          <div id="6" data-cell-index="6" class="cell" onClick="handleCellClick()"></div>
-          <div id="7" data-cell-index="7" class="cell" onClick="handleCellClick()"></div>
-          <div id="8" data-cell-index="8" class="cell" onClick="handleCellClick()"></div>
+          <div id="2" data-cell-index="2" class="cell"></div>
+          <div id="3" data-cell-index="3" class="cell"></div>
+          <div id="4" data-cell-index="4" class="cell"></div>
+          <div id="5" data-cell-index="5" class="cell"></div>
+          <div id="6" data-cell-index="6" class="cell"></div>
+          <div id="7" data-cell-index="7" class="cell"></div>
+          <div id="8" data-cell-index="8" class="cell"></div>
       </div>
-      
-<!--Tabelle durch Funktion bauen-->
-<table id="matchesTable" cellpadding="2" cellspacing="2" onclick="">
-</table>
-
       <!--Anzeige welcher Spieler dran ist-->
       <h2 class="game--status"></h2>
       <!--Seite refreshen-->
       <p style="text-align:center">
-      <button onClick="window.location.reload();">Nochmal spielen</button>
-      </p>
+      <button onClick="window.location.reload();">Play again</button>
+    </p>
   </section>
-  <!--Button Spieler ID´s-->
-  <button onClick="getMatches();">Get Table</button>
 
-  <!--Button zum Ausgeben der JSON-->
+  <!--Button zum Ausgeben der kompletten JSON-->
   <p style="text-align:center">
-  <button onClick="getJSON();">Get JSON</button>
+    <button onClick="getJSON();">Get complete JSON</button>
   </p>
+
+    <!--Button Spieler ID´s-->
+  <p style="text-align:center">
+   <button onClick="getMatches();">Get Game ID´s</button>
+  </p>
+
+  <!--Button Spiel beitreten-->
+  <p style="text-align:center">
+    <button onClick="createGame();">Create new Game</button>
+  </p>
+
+
+
+
 
 
 

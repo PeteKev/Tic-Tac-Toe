@@ -1,7 +1,3 @@
-// Next-Steps: Spielfelder wieder einblenden
-// Variablen der Json global deklarieren
-// Auskommentieren
-
 // Konstante zum aktuellen Spielstatus
 const statusDisplay = document.querySelector('.game--status');
 
@@ -116,6 +112,22 @@ function getMatches() {
         }
     }
 }
+
+// create Game (Spiel beitreten)
+function createGame() {
+    // HTTP Schnittstelle
+    const Http = new XMLHttpRequest();
+    const url = 'http://localhost:5000/api/matches/';
+
+    Http.open("POST", url);
+    Http.send();
+
+    Http.onreadystatechange = (e) => {
+        // Antwort in Console ausgeben
+        console.log(Http.responseText)
+    }
+}
+
 // Match joinen
 function joinMatch() {
     // HTTP Schnittstelle
@@ -130,6 +142,19 @@ function joinMatch() {
         console.log(Http.responseText)
     }
 }
+
+// Get table row clicked zum Einstieg ins Spiel
+function getClickedRow() {
+    var rows = document.getElementsByClassName("cell").rows; 
+    console.log(rows)
+}
+
+
+
+
+
+
+
 
 // Zelle geklickt, Parameter der geklickten Zelle und Index
 function handleCellPlayed(clickedCell, clickedCellIndex) {
@@ -147,7 +172,7 @@ function handlePlayerChange() {
     statusDisplay.innerHTML = currentPlayerTurn(); 
 }
 
-// Funktion Highlight tbd
+// Funktion Gewinnkombination farblich darstellen
 function changeColor(winningRow) {
     for (let i = 0; i<3; i++){
         document.getElementById(winningRow[i]).style.backgroundColor = 'red';
