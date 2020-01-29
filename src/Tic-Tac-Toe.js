@@ -76,6 +76,7 @@ function tableCreate(matchObject, i) {
         //console.log("Matches" + matchObject)
         // Reihen anhand der Anzahl von i einfügen
         var row = table.insertRow(i);
+        row.id="Test" + i;
         //row.onclick=getId(row);
         // Zelle 1 erstellen
         var cell1 = row.insertCell(0);
@@ -144,7 +145,7 @@ function createGame() {
 function joinMatch() {
     // HTTP Schnittstelle
     const Http = new XMLHttpRequest();
-    const url = 'http://localhost:5000/api/matches/' + matches[0] + '/player';
+    const url = 'http://localhost:5000/api/matches/' + matches[0].id + '/player';
 
     Http.open("POST", url);
     Http.send();
@@ -153,6 +154,23 @@ function joinMatch() {
         // Antwort in Console ausgeben
         console.log(Http.responseText)
     }
+
+    getMatch(matches[0].id);
+}
+
+// ID des Matches zum Spielbeitritt
+function getMatch(id) {
+    const Http = new XMLHttpRequest();
+    const url = 'http://localhost:5000/api/matches/' + matches[0].id;
+
+    Http.open("GET", url);
+    Http.send();
+
+    Http.onreadystatechange = (e) => {
+        // Antwort in Console ausgeben
+        console.log(Http.responseText)
+    }
+
 }
 
 // Spieler entfernen
@@ -177,8 +195,7 @@ function handleCellPlayed(clickedCell, clickedCellIndex) {
     // Zeichen je nach Spieler setzen
     clickedCell.innerHTML = currentPlayer;
     // Index der geklickten Zelle
-    //getClickedRow();
-    console.log("Zelle " + clickedCellIndex)
+    console.log("Cell " + clickedCellIndex)
 }
 
 // Spieler tauschen
@@ -337,3 +354,5 @@ function getJSON() {
         }
     }
 } 
+
+function getID() {}
