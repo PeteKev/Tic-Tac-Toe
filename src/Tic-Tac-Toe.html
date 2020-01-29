@@ -15,8 +15,6 @@
   <section> 
       <!--Überschrift-->
       <h1 class="game--title">Tic Tac Toe by PeteKev</h1>
-      <!--Tabellen ID zum Ausgeben der Spiel-ID´s festlegen-->
-      <table id="matchesTable" onclick="joinMatch()">
       <!--Klasse game--container aufrufen-->
       <div class="game--container">
           <!--Tabelle (wird durch div zu einen Bereich geschlossen)-->
@@ -53,7 +51,8 @@
     <button onClick="createGame();">Create new Game</button>
   </p>
 
-
+  <!--Tabellen ID zum Ausgeben der Spiel-ID´s festlegen-->
+  <table id="matchesTable" onClick="getId(this)">
 
 
 

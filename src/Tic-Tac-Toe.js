@@ -57,16 +57,11 @@ var winningConditions = [
 	[2, 4, 6]
 ];
 
-// JSON zurücksetzen tbd
-function resetJSON() {
-    jsonText.reload;
-}
-
-// Fenster neu laden tbd
+// Fenster neu laden + json tbd
 function reloadWindow() {
     window.location.reload(true);
     // JSON zum Ursprungszustand zurücksetzen
-    resetJSON();
+    deletePlayer();
 }
 
 // Tabelle erstellen, Parameter matchObject & Zähler i
@@ -81,6 +76,7 @@ function tableCreate(matchObject, i) {
         //console.log("Matches" + matchObject)
         // Reihen anhand der Anzahl von i einfügen
         var row = table.insertRow(i);
+        //row.onclick=getId(row);
         // Zelle 1 erstellen
         var cell1 = row.insertCell(0);
         // Zelle 2 erstellen
@@ -90,6 +86,8 @@ function tableCreate(matchObject, i) {
         cell1.innerHTML = match.name,
         // In Zelle 2 Spiel-ID ausgeben
         cell2.innerHTML = match.id;
+        // Match ID Variable
+        console.log(match.id);
 }
 
 // Matches erkennen
@@ -100,7 +98,7 @@ function getMatches() {
     var numbersOfRows = document.getElementById("matchesTable").rows.length;
     // Solange die Anzahl der Reihen -1 größer als gleich 0 ist, Zellen löschen
     for (let i = numbersOfRows-1; i >= 0; i--) {
-        console.log(i)
+        //console.log(i)
         // Tabelle bei Klick auf Button löschen / durch aktualisierte ersetzen
         matchesTable.deleteRow(i)
     }
@@ -120,7 +118,7 @@ function getMatches() {
 
         for (let i = 0; i < matches.length; i++) {
             // Anzahl der Matches in Konsole ausgeben
-            console.log("length " + matches.length);
+            //console.log("length " + matches.length);
             // Tabelle anhand der Anzahl i erstellen
             tableCreate(matches[i], i );
         }
@@ -157,10 +155,19 @@ function joinMatch() {
     }
 }
 
-// Get table row clicked zum Einstieg ins Spiel
-function getClickedRow() {
-    var rows = document.getElementsByClassName("cell").rows; 
-    console.log(rows)
+// Spieler entfernen
+function deletePlayer() {
+    // HTTP Schnittstelle
+    const Http = new XMLHttpRequest();
+    const url = 'http://localhost:5000/api/matches/';
+
+    Http.open("DELETE", url);
+    Http.send();
+
+    Http.onreadystatechange = (e) => {
+        // Antwort in Console ausgeben
+        console.log(Http.responseText)
+    }
 }
 
 // Zelle geklickt, Parameter der geklickten Zelle und Index
@@ -169,6 +176,9 @@ function handleCellPlayed(clickedCell, clickedCellIndex) {
     gameState[clickedCellIndex] = currentPlayer;
     // Zeichen je nach Spieler setzen
     clickedCell.innerHTML = currentPlayer;
+    // Index der geklickten Zelle
+    //getClickedRow();
+    console.log("Zelle " + clickedCellIndex)
 }
 
 // Spieler tauschen
