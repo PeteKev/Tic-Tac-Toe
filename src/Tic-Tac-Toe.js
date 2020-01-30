@@ -88,7 +88,7 @@ function tableCreate(matchObject, i) {
         // In Zelle 2 Spiel-ID ausgeben
         cell2.innerHTML = match.id;
         // Match ID Variable
-        console.log(match.id);
+        //console.log(match.id);
 }
 
 // Matches erkennen
@@ -152,39 +152,26 @@ function joinMatch() {
 
     Http.onreadystatechange = (e) => {
         // Antwort in Console ausgeben
-        console.log(Http.responseText)
+        //console.log(Http.responseText)
     }
-
-    getMatch(matches[0].id);
+    // ID der Matches
+    intoMatch(matches[0].id);
 }
 
-// ID des Matches zum Spielbeitritt
-function getMatch(id) {
+// JSON des Matches zum Spielbeitritt ausgeben
+function intoMatch() {
     const Http = new XMLHttpRequest();
     const url = 'http://localhost:5000/api/matches/' + matches[0].id;
 
     Http.open("GET", url);
     Http.send();
 
-    Http.onreadystatechange = (e) => {
+    Http.onloadend = (e) => {
         // Antwort in Console ausgeben
-        console.log(Http.responseText)
-    }
-
-}
-
-// Spieler entfernen
-function deletePlayer() {
-    // HTTP Schnittstelle
-    const Http = new XMLHttpRequest();
-    const url = 'http://localhost:5000/api/matches/';
-
-    Http.open("DELETE", url);
-    Http.send();
-
-    Http.onreadystatechange = (e) => {
-        // Antwort in Console ausgeben
-        console.log(Http.responseText)
+        var responseText = Http.responseText;
+        var jsonData = JSON.parse(responseText); 
+        console.log(jsonData);      
+        console.log(jsonData.playerO);       
     }
 }
 
@@ -353,6 +340,4 @@ function getJSON() {
         var oID = normalText[1].id;
         }
     }
-} 
-
-function getID() {}
+}
