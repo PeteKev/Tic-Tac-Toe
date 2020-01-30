@@ -167,11 +167,34 @@ function intoMatch() {
     Http.send();
 
     Http.onloadend = (e) => {
-        // Antwort in Console ausgeben
+        // Antwort JSON verarbeiten
         var responseText = Http.responseText;
         var jsonData = JSON.parse(responseText); 
-        console.log(jsonData);      
-        console.log(jsonData.playerO);       
+        // Gesamte JSON ausgeben
+        //console.log(jsonData);  
+
+        // Spielfelder
+        console.log(jsonData.fields[0]);
+        console.log(jsonData.fields[1]);
+        console.log(jsonData.fields[2]);
+        // Game ID
+        console.log("Game ID: " + jsonData.id);
+        // Is Finished
+        console.log("Is Finished: " + jsonData.isFinished);
+        // Is Won
+        console.log("Is Won: " + jsonData.isWon);
+        // PlayerO ID
+        console.log("PlayerO ID: " + jsonData.playerO.id);
+        // Player O State
+        console.log("PlayerO State: " + jsonData.playerO.state);
+        // PlayerX ID
+        console.log("PlayerX ID: " + jsonData.playerX.id);
+        // Player X State
+        console.log("PlayerX State: " + jsonData.playerX.state);
+        // ReadyToStart
+        console.log("ReadyToStart: " + jsonData.readyToStart);
+        // Winner
+        console.log("Winner:" + jsonData.winner);        
     }
 }
 
