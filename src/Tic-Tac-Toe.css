@@ -27,10 +27,3 @@ section {
   line-height: 100px; /*Positionierung X & O*/
   font-size: 60px; /*Größe X & O*/
 }
-
-/*Ausrichtung Textarea
-textarea {
-  display: block;
-  padding-bottom: 15px;
-  padding-top: 15px;
-} */

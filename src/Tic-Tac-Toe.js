@@ -1,5 +1,3 @@
-// To do: Get clicked Cell ID (event)
-
 // Konstante zum aktuellen Spielstatus
 const statusDisplay = document.querySelector('.game--status');
 
@@ -304,7 +302,6 @@ function handleRestartGame() {
     document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
 }
 
-
 // Ausgabe der JSON
 function getJSON() {
     const json = new XMLHttpRequest();
@@ -313,54 +310,7 @@ function getJSON() {
     json.send();
 
     json.onloadend = (e) => {
-    var jsonText = json.responseText
-    console.log(jsonText)    
-    var normalText = JSON.parse(jsonText);    
-
-    // Array-Darstellung für Spieler X
-    // Gamefield 
-    var gameField = normalText[0].fields;  
-    // isFinished
-    var xIsFinished = normalText[0].isFinished;
-    // isWon
-    var xIsWon = normalText[0].isWon;
-    // Winner
-    var xWinner = normalText[0].Winner;
-    // readyToStart
-    var xReadyToStart = normalText[0].ReadyToStart;
-    // Spiele ID X
-    var xID = normalText[0].id;
-    
-    // Player X ID & State wenn vorhanden ausgeben, Variablen global deklarieren
-    var PlayerXID;
-    var xState;
-
-    if(normalText[0].playerX) {
-        var PlayerXID = normalText[0].playerX.id;
-        var xState = normalText[0].playerX.state;
-    }   
- 
-    // Player O Array ausgeben wenn vorhanden, Variablen global deklarieren
-    var oFields;
-    var oIsFinished;
-    var oIsWon;
-    var oWinner;
-    var oReadyToStart;
-    var oID;
-
-    // Wenn das Array größer als 1 ist, Player O Daten ausgeben
-    if(normalText.length > 1) {
-        var oFields = normalText[1].fields;
-        // isFinished
-        var oIsFinished = normalText[1].isFinished;
-        // isWon
-        var oIsWon = normalText[1].isWon;
-        // Winner
-        var oWinner = normalText[1].Winner;
-        // readyToStart
-        var oReadyToStart = normalText[1].ReadyToStart;
-        // Spiele ID O
-        var oID = normalText[1].id;
-        }
+    var jsonText = json.responseText;
+    console.log(jsonText);       
     }
 }
